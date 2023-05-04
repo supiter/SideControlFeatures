@@ -4,25 +4,78 @@
 import PackageDescription
 
 let package = Package(
-    name: "ControlFeatures",
-    products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library(
-            name: "ControlFeatures",
-            targets: ["ControlFeatures"]),
-    ],
-    dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .target(
-            name: "ControlFeatures",
-            dependencies: []),
-        .testTarget(
-            name: "ControlFeaturesTests",
-            dependencies: ["ControlFeatures"]),
-    ]
+  name: "ControlFeatures",
+  platforms: [
+    .macOS(.v13),
+  ],
+  
+  products: [
+    .library(name: "ControlFeature", targets: ["ControlFeature"]),
+    .library(name: "CwFeature", targets: ["CwFeature"]),
+    .library(name: "FlagFeature", targets: ["FlagFeature"]),
+  ],
+  
+  dependencies: [
+    // ----- K3TZR -----
+    .package(url: "https://github.com/K3TZR/ApiFeatures.git", branch: "main"),
+    .package(url: "https://github.com/K3TZR/SharedFeatures.git", branch: "main"),
+    // ----- OTHER -----
+    .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.42.0"),
+  ],
+  
+  targets: [
+    // --------------- Modules ---------------
+    // ControlFeature
+    .target( name: "ControlFeature", dependencies: [
+      "CwFeature",
+      "EqFeature",
+      "FlagFeature",
+      "Ph2Feature",
+      "Ph1Feature",
+      "TxFeature",
+      .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+    ]),
+    
+    // CwFeature
+    .target( name: "CwFeature", dependencies: [
+      .product(name: "FlexApi", package: "ApiFeatures"),
+      .product(name: "LevelIndicatorView", package: "SharedFeatures"),
+      .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+    ]),
+    
+    // EqFeature
+      .target( name: "EqFeature", dependencies: [
+        .product(name: "FlexApi", package: "ApiFeatures"),
+        .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+      ]),
+    
+    // FlagFeature
+    .target(name: "FlagFeature", dependencies: [
+      .product(name: "ApiIntView", package: "SharedFeatures"),
+      .product(name: "FlexApi", package: "ApiFeatures"),
+      .product(name: "LevelIndicatorView", package: "SharedFeatures"),
+      .product(name: "Shared", package: "SharedFeatures"),
+      .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+    ]),
+    
+    // Ph1Feature
+    .target( name: "Ph1Feature", dependencies: [
+      .product(name: "FlexApi", package: "ApiFeatures"),
+      .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+    ]),
+    
+    // Ph2Feature
+    .target( name: "Ph2Feature", dependencies: [
+      .product(name: "FlexApi", package: "ApiFeatures"),
+      .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+    ]),
+    
+    // TxFeature
+    .target( name: "TxFeature", dependencies: [
+      .product(name: "FlexApi", package: "ApiFeatures"),
+      .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+    ]),
+    
+    // ---------------- Tests ----------------
+  ]
 )
