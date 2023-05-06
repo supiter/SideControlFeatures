@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "apifeatures",
+      "identity" : "apifeature",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/K3TZR/ApiFeatures.git",
+      "location" : "https://github.com/K3TZR/ApiFeature.git",
       "state" : {
         "branch" : "main",
-        "revision" : "60ed3bce00bfcab6e5228c5532688d20a00ab79d"
+        "revision" : "e2dc10a1f40a899900123197742cf4723acff6f9"
       }
     },
     {
@@ -28,21 +28,21 @@
       }
     },
     {
+      "identity" : "customcontrolfeature",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/K3TZR/CustomControlFeature.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "d5b53e165b652f19b4b4cf03a29a57c6f6973197"
+      }
+    },
+    {
       "identity" : "jwtdecode.swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/auth0/JWTDecode.swift",
       "state" : {
         "revision" : "3cd207fb9e943b6168a117baa3936c823204c2dc",
         "version" : "2.6.3"
-      }
-    },
-    {
-      "identity" : "sharedfeatures",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/K3TZR/SharedFeatures.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "00172e2404d1e141f45bbe1db6f079f9a2b1439d"
       }
     },
     {

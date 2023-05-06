@@ -1,6 +1,6 @@
 //
-//  ControlCore.swift
-//  ControlFeatures/ControlFeature
+//  SideControlCore.swift
+//  SideControlFeatures/SideControlFeature
 //
 //  Created by Douglas Adams on 11/13/22.
 //
@@ -17,7 +17,7 @@ import Ph1Feature
 import Ph2Feature
 import TxFeature
 
-public struct ControlFeature: ReducerProtocol {
+public struct SideControlFeature: ReducerProtocol {
   
   public init() {}
   

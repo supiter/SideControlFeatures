@@ -11,7 +11,6 @@ import SwiftUI
 import ApiIntView
 import LevelIndicatorView
 import FlexApi
-import Shared
 
 public enum FlagMode: String {
   case aud

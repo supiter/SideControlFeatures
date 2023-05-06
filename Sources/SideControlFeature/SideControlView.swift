@@ -15,17 +15,16 @@ import FlagFeature
 import Ph1Feature
 import Ph2Feature
 import TxFeature
-import Shared
 
 // ----------------------------------------------------------------------------
 // MARK: - View
 
-public struct ControlView: View {
-  let store: StoreOf<ControlFeature>
+public struct SideControlView: View {
+  let store: StoreOf<SideControlFeature>
   @ObservedObject var apiModel: ApiModel
   @ObservedObject var objectModel: ObjectModel
   
-  public init(store: StoreOf<ControlFeature>, apiModel: ApiModel, objectModel: ObjectModel) {
+  public init(store: StoreOf<SideControlFeature>, apiModel: ApiModel, objectModel: ObjectModel) {
     self.store = store
     self.apiModel = apiModel
     self.objectModel = objectModel
@@ -53,22 +52,22 @@ public struct ControlView: View {
         ScrollView {
           if apiModel.clientInitialized {
             VStack {
-              IfLetStore( self.store.scope(state: \.rxState, action: ControlFeature.Action.rx),
+              IfLetStore( self.store.scope(state: \.rxState, action: SideControlFeature.Action.rx),
                           then: { store in FlagView(store: store) })
               
-              IfLetStore( self.store.scope(state: \.txState, action: ControlFeature.Action.tx),
+              IfLetStore( self.store.scope(state: \.txState, action: SideControlFeature.Action.tx),
                           then: { store in TxView(store: store) })
               
-              IfLetStore( self.store.scope(state: \.ph1State, action: ControlFeature.Action.ph1),
+              IfLetStore( self.store.scope(state: \.ph1State, action: SideControlFeature.Action.ph1),
                           then: { store in Ph1View(store: store, objectModel: objectModel) })
               
-              IfLetStore( self.store.scope(state: \.ph2State, action: ControlFeature.Action.ph2),
+              IfLetStore( self.store.scope(state: \.ph2State, action: SideControlFeature.Action.ph2),
                           then: { store in Ph2View(store: store) })
               
-              IfLetStore( self.store.scope(state: \.cwState, action: ControlFeature.Action.cw),
+              IfLetStore( self.store.scope(state: \.cwState, action: SideControlFeature.Action.cw),
                           then: { store in CwView(store: store) })
               
-              IfLetStore( self.store.scope(state: \.eqState, action: ControlFeature.Action.eq),
+              IfLetStore( self.store.scope(state: \.eqState, action: SideControlFeature.Action.eq),
                           then: { store in EqView(store: store) })
             }
             .padding(.horizontal, 10)
@@ -101,50 +100,50 @@ struct RightSideView_Previews: PreviewProvider {
       )
       .previewDisplayName("Rx")
       
-      ControlView(
+      SideControlView(
         store: Store(
-          initialState: ControlFeature.State(txButton: true),
-          reducer: ControlFeature()
+          initialState: SideControlFeature.State(txButton: true),
+          reducer: SideControlFeature()
         ), apiModel: ApiModel(), objectModel: ObjectModel()
       )
       .previewDisplayName("Tx")
       
-      ControlView(
+      SideControlView(
         store: Store(
-          initialState: ControlFeature.State(eqButton: true, txEqSelected: false),
-          reducer: ControlFeature()
+          initialState: SideControlFeature.State(eqButton: true, txEqSelected: false),
+          reducer: SideControlFeature()
         ), apiModel: ApiModel(), objectModel: ObjectModel()
       )
       .previewDisplayName("Eq")
       
-      ControlView(
+      SideControlView(
         store: Store(
-          initialState: ControlFeature.State(ph1Button: true),
-          reducer: ControlFeature()
+          initialState: SideControlFeature.State(ph1Button: true),
+          reducer: SideControlFeature()
         ), apiModel: ApiModel(), objectModel: ObjectModel()
       )
       .previewDisplayName("Ph1")
       
-      ControlView(
+      SideControlView(
         store: Store(
-          initialState: ControlFeature.State(ph2Button: true),
-          reducer: ControlFeature()
+          initialState: SideControlFeature.State(ph2Button: true),
+          reducer: SideControlFeature()
         ), apiModel: ApiModel(), objectModel: ObjectModel()
       )
       .previewDisplayName("Ph2")
       
-      ControlView(
+      SideControlView(
         store: Store(
-          initialState: ControlFeature.State(cwButton: true),
-          reducer: ControlFeature()
+          initialState: SideControlFeature.State(cwButton: true),
+          reducer: SideControlFeature()
         ), apiModel: ApiModel(), objectModel: ObjectModel()
       )
       .previewDisplayName("CW")
       
-      ControlView(
+      SideControlView(
         store: Store(
-          initialState: ControlFeature.State(cwButton: true, eqButton: true, ph1Button: true, ph2Button: true, rxButton: true, txButton: true, txEqSelected: false),
-          reducer: ControlFeature()
+          initialState: SideControlFeature.State(cwButton: true, eqButton: true, ph1Button: true, ph2Button: true, rxButton: true, txButton: true, txEqSelected: false),
+          reducer: SideControlFeature()
         ), apiModel: ApiModel(), objectModel: ObjectModel()
       )
       .frame(height: 1200)
