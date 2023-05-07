@@ -490,19 +490,3 @@ struct FlagView_Previews: PreviewProvider {
     .frame(width: 275)
   }
 }
-
-//extension NumberFormatter {
-//  static let dotted: NumberFormatter = {
-//    let formatter = NumberFormatter()
-//    formatter.groupingSeparator = "."
-//    formatter.numberStyle = .decimal
-//    return formatter
-//  }()
-//}
-//
-//extension String {
-//  var isValidFrequency: Bool {
-//    let digitsCharacters = CharacterSet(charactersIn: "0123456789.")
-//    return CharacterSet(charactersIn: self).isSubset(of: digitsCharacters) && self.filter{ $0 == "."}.count <= 1
-//  }
-//}
