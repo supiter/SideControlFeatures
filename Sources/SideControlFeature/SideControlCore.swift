@@ -10,12 +10,12 @@ import Foundation
 import SwiftUI
 
 import FlexApi
-import CwFeature
-import EqFeature
+import SideCwFeature
+import SideEqFeature
 import FlagFeature
-import Ph1Feature
-import Ph2Feature
-import TxFeature
+import SidePh1Feature
+import SidePh2Feature
+import SideTxFeature
 
 public struct SideControlFeature: ReducerProtocol {
   

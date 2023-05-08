@@ -11,7 +11,7 @@ let package = Package(
   
   products: [
     .library(name: "SideControlFeature", targets: ["SideControlFeature"]),
-    .library(name: "CwFeature", targets: ["CwFeature"]),
+//    .library(name: "CwFeature", targets: ["CwFeature"]),
     .library(name: "FlagFeature", targets: ["FlagFeature"]),
   ],
   
@@ -27,24 +27,24 @@ let package = Package(
     // --------------- Modules ---------------
     // SideControlFeature
     .target( name: "SideControlFeature", dependencies: [
-      "CwFeature",
-      "EqFeature",
+      "SideCwFeature",
+      "SideEqFeature",
       "FlagFeature",
-      "Ph2Feature",
-      "Ph1Feature",
-      "TxFeature",
+      "SidePh2Feature",
+      "SidePh1Feature",
+      "SideTxFeature",
       .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
     ]),
     
     // CwFeature
-    .target( name: "CwFeature", dependencies: [
+    .target( name: "SideCwFeature", dependencies: [
       .product(name: "FlexApi", package: "ApiFeature"),
       .product(name: "LevelIndicatorView", package: "CustomControlFeature"),
       .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
     ]),
     
     // EqFeature
-      .target( name: "EqFeature", dependencies: [
+      .target( name: "SideEqFeature", dependencies: [
         .product(name: "FlexApi", package: "ApiFeature"),
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
       ]),
@@ -59,20 +59,20 @@ let package = Package(
     ]),
     
     // Ph1Feature
-    .target( name: "Ph1Feature", dependencies: [
+    .target( name: "SidePh1Feature", dependencies: [
       .product(name: "FlexApi", package: "ApiFeature"),
       .product(name: "Shared", package: "ApiFeature"),
       .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
     ]),
     
     // Ph2Feature
-    .target( name: "Ph2Feature", dependencies: [
+    .target( name: "SidePh2Feature", dependencies: [
       .product(name: "FlexApi", package: "ApiFeature"),
       .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
     ]),
     
     // TxFeature
-    .target( name: "TxFeature", dependencies: [
+    .target( name: "SideTxFeature", dependencies: [
       .product(name: "FlexApi", package: "ApiFeature"),
       .product(name: "Shared", package: "ApiFeature"),
       .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
