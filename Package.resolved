@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "apifeature",
+      "identity" : "apifeatures",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/K3TZR/ApiFeature.git",
+      "location" : "https://github.com/K3TZR/ApiFeatures.git",
       "state" : {
         "branch" : "main",
-        "revision" : "9404873d1fd3769cb1518b91ba46bd734f6f291a"
+        "revision" : "0900fea6c07d1605b34edb45160f9163177bd8a6"
       }
     },
     {
@@ -28,12 +28,12 @@
       }
     },
     {
-      "identity" : "customcontrolfeature",
+      "identity" : "customcontrolfeatures",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/K3TZR/CustomControlFeature.git",
+      "location" : "https://github.com/K3TZR/CustomControlFeatures.git",
       "state" : {
         "branch" : "main",
-        "revision" : "d5b53e165b652f19b4b4cf03a29a57c6f6973197"
+        "revision" : "d903f36e01d7b6546276e7a6cd87650967ad7790"
       }
     },
     {
