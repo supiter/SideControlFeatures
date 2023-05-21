@@ -10,9 +10,15 @@ let package = Package(
   ],
   
   products: [
-    .library(name: "SideControlFeature", targets: ["SideControlFeature"]),
-//    .library(name: "CwFeature", targets: ["CwFeature"]),
-    .library(name: "FlagFeature", targets: ["FlagFeature"]),
+    .library(name: "SideControlFeature", targets: [
+      "SideControlFeature",
+      "SideCwFeature",
+      "SideEqFeature",
+      "FlagFeature",
+      "SidePh1Feature",
+      "SidePh2Feature",
+      "SideTxFeature",
+    ]),
   ],
   
   dependencies: [

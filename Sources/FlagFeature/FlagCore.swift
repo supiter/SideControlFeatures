@@ -61,7 +61,7 @@ public struct FlagFeature: ReducerProtocol {
       return .none
 
     case .sliceProperty(let slice, let property, let stringValue):
-      return .run { _ in await slice.setAndSend(property, stringValue) }
+      return .run { _ in await slice.setProperty(property, stringValue) }
 
     case .splitClick:
       // FIXME:
