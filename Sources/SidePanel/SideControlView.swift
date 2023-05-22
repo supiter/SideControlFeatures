@@ -9,12 +9,12 @@ import SwiftUI
 import ComposableArchitecture
 
 import FlexApi
-import SideCwFeature
-import SideEqFeature
-import FlagFeature
-import SidePh1Feature
-import SidePh2Feature
-import SideTxFeature
+import CwControls
+import EqControls
+import FlagControls
+import Ph1Controls
+import Ph2Controls
+import TxControls
 
 // ----------------------------------------------------------------------------
 // MARK: - View

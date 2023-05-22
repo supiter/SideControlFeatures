@@ -10,13 +10,13 @@ let package = Package(
   ],
   
   products: [
-    .library(name: "SideControlFeature", targets: ["SideControlFeature"]),
-    .library(name: "SideCwFeature", targets: ["SideCwFeature"]),
-    .library(name: "SideEqFeature", targets: ["SideEqFeature"]),
-    .library(name: "FlagFeature", targets: ["FlagFeature"]),
-    .library(name: "SidePh1Feature", targets: ["SidePh1Feature"]),
-    .library(name: "SidePh2Feature", targets: ["SidePh2Feature"]),
-    .library(name: "SideTxFeature", targets: ["SideTxFeature"]),
+    .library(name: "SidePanel", targets: ["SidePanel"]),
+    .library(name: "CwControls", targets: ["CwControls"]),
+    .library(name: "EqControls", targets: ["EqControls"]),
+    .library(name: "FlagControls", targets: ["FlagControls"]),
+    .library(name: "Ph1Controls", targets: ["Ph1Controls"]),
+    .library(name: "Ph2Controls", targets: ["Ph2Controls"]),
+    .library(name: "TxControls", targets: ["TxControls"]),
   ],
   
   dependencies: [
@@ -30,55 +30,55 @@ let package = Package(
   targets: [
     // --------------- Modules ---------------
     // SideControlFeature
-    .target( name: "SideControlFeature", dependencies: [
-      "SideCwFeature",
-      "SideEqFeature",
-      "FlagFeature",
-      "SidePh2Feature",
-      "SidePh1Feature",
-      "SideTxFeature",
+    .target( name: "SidePanel", dependencies: [
+      "CwControls",
+      "EqControls",
+      "FlagControls",
+      "Ph1Controls",
+      "Ph2Controls",
+      "TxControls",
       .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
     ]),
     
-    // CwFeature
-    .target( name: "SideCwFeature", dependencies: [
+    // CwControls
+    .target( name: "CwControls", dependencies: [
       .product(name: "FlexApi", package: "ApiFeatures"),
       .product(name: "LevelIndicatorView", package: "CustomControlFeatures"),
       .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
     ]),
     
-    // EqFeature
-      .target( name: "SideEqFeature", dependencies: [
+    // EqControls
+      .target( name: "EqControls", dependencies: [
         .product(name: "FlexApi", package: "ApiFeatures"),
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
       ]),
     
-    // FlagFeature
-    .target(name: "FlagFeature", dependencies: [
+    // FlagControls
+    .target(name: "FlagControls", dependencies: [
       .product(name: "ApiIntView", package: "CustomControlFeatures"),
       .product(name: "FlexApi", package: "ApiFeatures"),
       .product(name: "LevelIndicatorView", package: "CustomControlFeatures"),
-//      .product(name: "Shared", package: "ApiFeature"),
+      .product(name: "Shared", package: "ApiFeatures"),
       .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
     ]),
     
-    // Ph1Feature
-    .target( name: "SidePh1Feature", dependencies: [
+    // Ph1Controls
+    .target( name: "Ph1Controls", dependencies: [
       .product(name: "FlexApi", package: "ApiFeatures"),
-//      .product(name: "Shared", package: "ApiFeature"),
+      .product(name: "Shared", package: "ApiFeatures"),
       .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
     ]),
     
-    // Ph2Feature
-    .target( name: "SidePh2Feature", dependencies: [
+    // Ph2Controls
+    .target( name: "Ph2Controls", dependencies: [
       .product(name: "FlexApi", package: "ApiFeatures"),
       .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
     ]),
     
-    // TxFeature
-    .target( name: "SideTxFeature", dependencies: [
+    // TxControls
+    .target( name: "TxControls", dependencies: [
       .product(name: "FlexApi", package: "ApiFeatures"),
-//      .product(name: "Shared", package: "ApiFeature"),
+      .product(name: "Shared", package: "ApiFeatures"),
       .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
     ]),
     
