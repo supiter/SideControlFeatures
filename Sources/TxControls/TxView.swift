@@ -19,6 +19,7 @@ public struct TxView: View {
     self.store = store
   }
   
+  @Dependency(\.apiModel) var apiModel
   @Dependency(\.objectModel) var objectModel
   
   public var body: some View {
@@ -31,7 +32,7 @@ public struct TxView: View {
           AtuStatusView(viewStore: viewStore, atu: objectModel.atu)
         }
         VStack(alignment: .center, spacing: 10) {
-          ButtonsView(viewStore: viewStore, transmit: objectModel.transmit, radio: objectModel.radio ?? Radio(Packet()), atu: objectModel.atu)
+          ButtonsView(viewStore: viewStore, transmit: objectModel.transmit, radio: apiModel.radio ?? Radio(Packet()), atu: objectModel.atu)
           Divider().background(.blue)
         }
       }

@@ -18,10 +18,12 @@ import Shared
 public struct Ph1View: View {
   let store: StoreOf<Ph1Feature>
   @ObservedObject var objectModel: ObjectModel
-  
-  public init(store: StoreOf<Ph1Feature>, objectModel: ObjectModel) {
+  @ObservedObject var apiModel: ApiModel
+
+  public init(store: StoreOf<Ph1Feature>, objectModel: ObjectModel, apiModel: ApiModel) {
     self.store = store
     self.objectModel = objectModel
+    self.apiModel = apiModel
   }
   
   public var body: some View {
@@ -31,12 +33,12 @@ public struct Ph1View: View {
         VStack(alignment: .leading, spacing: 10) {
           LevelsView()
           ProfileView(viewStore: viewStore, micProfile: objectModel.profiles[id: "mic"] ?? Profile("empty"))
-          MicSelectionView(viewStore: viewStore, transmit: objectModel.transmit, radio: objectModel.radio ?? Radio(Packet()))
-          ProcView(viewStore: viewStore, transmit: objectModel.transmit, radio: objectModel.radio ?? Radio(Packet()))
-          MonView(viewStore: viewStore, transmit: objectModel.transmit, radio: objectModel.radio ?? Radio(Packet()))
+          MicSelectionView(viewStore: viewStore, transmit: objectModel.transmit, radio: apiModel.radio ?? Radio(Packet()))
+          ProcView(viewStore: viewStore, transmit: objectModel.transmit, radio: apiModel.radio ?? Radio(Packet()))
+          MonView(viewStore: viewStore, transmit: objectModel.transmit, radio: apiModel.radio ?? Radio(Packet()))
         }
         VStack(alignment: .center, spacing: 10) {
-          AccView(viewStore: viewStore, transmit: objectModel.transmit, radio: objectModel.radio ?? Radio(Packet()))
+          AccView(viewStore: viewStore, transmit: objectModel.transmit, radio: apiModel.radio ?? Radio(Packet()))
           Divider().background(.blue)
         }
       }
@@ -184,7 +186,7 @@ private struct AccView: View {
 
 struct Ph1View_Previews: PreviewProvider {
     static var previews: some View {
-      Ph1View(store: Store(initialState: Ph1Feature.State(), reducer: Ph1Feature()), objectModel: ObjectModel())
+      Ph1View(store: Store(initialState: Ph1Feature.State(), reducer: Ph1Feature()), objectModel: ObjectModel(), apiModel: ApiModel())
         .frame(width: 275, height: 250)
         .previewDisplayName("Ph1")
     }

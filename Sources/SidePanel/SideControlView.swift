@@ -59,7 +59,7 @@ public struct SideControlView: View {
                           then: { store in TxView(store: store) })
               
               IfLetStore( self.store.scope(state: \.ph1State, action: SideControlFeature.Action.ph1),
-                          then: { store in Ph1View(store: store, objectModel: objectModel) })
+                          then: { store in Ph1View(store: store, objectModel: objectModel, apiModel: apiModel) })
               
               IfLetStore( self.store.scope(state: \.ph2State, action: SideControlFeature.Action.ph2),
                           then: { store in Ph2View(store: store) })
