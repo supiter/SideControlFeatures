@@ -11,6 +11,7 @@ import SwiftUI
 import ApiIntView
 import LevelIndicatorView
 import FlexApi
+import TxRxAntennaPopover
 
 public enum FlagMode: String {
   case aud
@@ -66,6 +67,8 @@ private struct Line1View: View {
   @ObservedObject var slice: Slice
   @ObservedObject var objectModel: ObjectModel
   
+  @Dependency(\.apiModel) var apiModel
+  
   func filter(_ high: Int, _ low: Int) -> String {
     var width = Float(high - low)
     if width > 999 {
@@ -76,31 +79,43 @@ private struct Line1View: View {
   }
   
   var body: some View {
-    HStack(spacing: 5) {
-      Image(systemName: "multiply")
+    HStack(spacing: 10) {
+      Image(systemName: "multiply.circle")
         .onTapGesture { viewStore.send(.closeButton) }
         .disabled(viewStore.isOnSide)
       
-      HStack(spacing: 0) {
-        Group {
-          Picker("", selection: viewStore.binding(
-            get: {_ in slice.rxAnt},
-            send: { .sliceProperty(slice, .rxAnt, $0) })) {
-              ForEach(slice.rxAntList, id: \.self) {
-                Text($0).tag($0)
-              }
+      HStack(spacing: 5) {
+//        Group {
+//          Picker("", selection: viewStore.binding(
+//            get: {_ in slice.rxAnt},
+//            send: { .sliceProperty(slice, .rxAnt, $0) })) {
+//              ForEach(slice.rxAntList, id: \.self) {
+//                Text($0).tag($0)
+//              }
+//            }
+          Text("Tx")
+        Text(apiModel.altAntennaName(for: slice.txAnt))
+//          Picker("", selection: viewStore.binding(
+//            get: {_ in slice.txAnt},
+//            send: { .sliceProperty(slice, .txAnt, $0) })) {
+//              ForEach(slice.txAntList, id: \.self) {
+//                Text(apiModel.altAntennaName(for: $0)).tag($0)
+//              }
+//            }
+//            .labelsHidden()
+            .frame(width: 75)
+            .controlSize(.small)
+            .border(.primary)
+        
+            .popover(isPresented: viewStore.binding(get: { $0.showTxRx }, send: .txRxClose ), arrowEdge: .bottom) {
+              TxRxAntennaView(store: Store(initialState: TxRxAntenna.State(), reducer: TxRxAntenna()),
+                      slice: slice)
             }
-          Picker("", selection: viewStore.binding(
-            get: {_ in slice.txAnt},
-            send: { .sliceProperty(slice, .txAnt, $0) })) {
-              ForEach(slice.txAntList, id: \.self) {
-                Text($0).tag($0)
-              }
+
+            .onTapGesture {
+              viewStore.send(.showTxRx(slice))
             }
-        }
-        .labelsHidden()
-        .frame(width: 55)
-        .controlSize(.small)
+//        }
       }
       
       HStack {
@@ -158,7 +173,7 @@ private struct Line2View: View {
                  action: { viewStore.send(.sliceProperty(slice, .frequency, $0.toMhz)) },
                   isValid: { $0.isValidFrequency },
                   width: 90
-      ).border(.green)
+      )
     }
   }
 }

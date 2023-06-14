@@ -17,6 +17,7 @@ let package = Package(
     .library(name: "Ph1Controls", targets: ["Ph1Controls"]),
     .library(name: "Ph2Controls", targets: ["Ph2Controls"]),
     .library(name: "TxControls", targets: ["TxControls"]),
+    .library(name: "TxRxAntennaPopover", targets: ["TxRxAntennaPopover"]),
   ],
   
   dependencies: [
@@ -79,6 +80,12 @@ let package = Package(
     .target( name: "TxControls", dependencies: [
       .product(name: "FlexApi", package: "ApiFeatures"),
       .product(name: "Shared", package: "ApiFeatures"),
+      .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+    ]),
+
+    // TxRxAntennaPopover
+    .target(name: "TxRxAntennaPopover", dependencies: [
+      .product(name: "FlexApi", package: "ApiFeatures"),
       .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
     ]),
     

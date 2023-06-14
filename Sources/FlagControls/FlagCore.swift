@@ -17,9 +17,11 @@ public struct FlagFeature: ReducerProtocol {
   
   public struct State: Equatable {
     public var isOnSide: Bool
+    public var showTxRx: Bool
 
-    public init(isOnSide: Bool = false) {
+    public init(isOnSide: Bool = false, showTxRx: Bool = false) {
       self.isOnSide = isOnSide
+      self.showTxRx = showTxRx
     }
   }
   
@@ -29,8 +31,10 @@ public struct FlagFeature: ReducerProtocol {
     case letterClick
     case qskButton
     case quickMode(Int)
+    case showTxRx(Slice)
     case sliceProperty(Slice, Slice.Property, String)
     case splitClick
+    case txRxClose
   }
   
   public func reduce(into state: inout State, action: Action) ->  EffectTask<Action> {
@@ -59,6 +63,10 @@ public struct FlagFeature: ReducerProtocol {
       // FIXME:
       print("quickMode: \(number)")
       return .none
+      
+    case .showTxRx:
+      state.showTxRx = true
+      return .none
 
     case .sliceProperty(let slice, let property, let stringValue):
       return .run { _ in await slice.setProperty(property, stringValue) }
@@ -66,6 +74,10 @@ public struct FlagFeature: ReducerProtocol {
     case .splitClick:
       // FIXME:
       print("splitClick")
+      return .none
+      
+    case .txRxClose:
+      state.showTxRx = false
       return .none
     }
   }
