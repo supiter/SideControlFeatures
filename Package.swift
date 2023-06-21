@@ -56,6 +56,7 @@ let package = Package(
     
     // FlagControls
     .target(name: "FlagControls", dependencies: [
+      "TxRxAntennaPopover",
       .product(name: "ApiIntView", package: "CustomControlFeatures"),
       .product(name: "FlexApi", package: "ApiFeatures"),
       .product(name: "LevelIndicatorView", package: "CustomControlFeatures"),
