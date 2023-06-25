@@ -11,7 +11,7 @@ import ComposableArchitecture
 import FlexApi
 import CwControls
 import EqControls
-import FlagControls
+import Flag
 import Ph1Controls
 import Ph2Controls
 import TxControls
@@ -94,7 +94,7 @@ struct RightSideView_Previews: PreviewProvider {
     Group {
       FlagView(
         store: Store(
-          initialState: FlagFeature.State(),
+          initialState: FlagFeature.State(slice: Slice(1)),
           reducer: FlagFeature()
         )
       )

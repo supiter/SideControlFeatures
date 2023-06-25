@@ -12,7 +12,7 @@ import SwiftUI
 import FlexApi
 import CwControls
 import EqControls
-import FlagControls
+import Flag
 import Ph1Controls
 import Ph2Controls
 import TxControls
@@ -20,6 +20,8 @@ import TxControls
 public struct SideControlFeature: ReducerProtocol {
   
   public init() {}
+  
+  @Dependency(\.objectModel) var objectModel
   
   public struct State: Equatable {
     var cwButton: Bool { didSet { UserDefaults.standard.set(cwButton, forKey: "cwButton") } }

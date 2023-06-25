@@ -6,7 +6,7 @@
       "location" : "https://github.com/K3TZR/ApiFeatures.git",
       "state" : {
         "branch" : "main",
-        "revision" : "0900fea6c07d1605b34edb45160f9163177bd8a6"
+        "revision" : "34095f6a8d22058c4fa1aaca980201ababb6ad73"
       }
     },
     {
@@ -34,6 +34,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "d903f36e01d7b6546276e7a6cd87650967ad7790"
+      }
+    },
+    {
+      "identity" : "flagfeatures",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/K3TZR/FlagFeatures.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "4a7559fcdacf95a36f4531cadbd83bfcb21cd8d9"
       }
     },
     {

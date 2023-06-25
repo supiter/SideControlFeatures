@@ -13,17 +13,16 @@ let package = Package(
     .library(name: "SidePanel", targets: ["SidePanel"]),
     .library(name: "CwControls", targets: ["CwControls"]),
     .library(name: "EqControls", targets: ["EqControls"]),
-    .library(name: "FlagControls", targets: ["FlagControls"]),
     .library(name: "Ph1Controls", targets: ["Ph1Controls"]),
     .library(name: "Ph2Controls", targets: ["Ph2Controls"]),
     .library(name: "TxControls", targets: ["TxControls"]),
-    .library(name: "TxRxAntennaPopover", targets: ["TxRxAntennaPopover"]),
   ],
   
   dependencies: [
     // ----- K3TZR -----
     .package(url: "https://github.com/K3TZR/ApiFeatures.git", branch: "main"),
     .package(url: "https://github.com/K3TZR/CustomControlFeatures.git", branch: "main"),
+    .package(url: "https://github.com/K3TZR/FlagFeatures.git", branch: "main"),
     // ----- OTHER -----
     .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.42.0"),
   ],
@@ -34,10 +33,10 @@ let package = Package(
     .target( name: "SidePanel", dependencies: [
       "CwControls",
       "EqControls",
-      "FlagControls",
       "Ph1Controls",
       "Ph2Controls",
       "TxControls",
+      .product(name: "Flag", package: "FlagFeatures"),
       .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
     ]),
     
@@ -53,16 +52,6 @@ let package = Package(
         .product(name: "FlexApi", package: "ApiFeatures"),
         .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
       ]),
-    
-    // FlagControls
-    .target(name: "FlagControls", dependencies: [
-      "TxRxAntennaPopover",
-      .product(name: "ApiIntView", package: "CustomControlFeatures"),
-      .product(name: "FlexApi", package: "ApiFeatures"),
-      .product(name: "LevelIndicatorView", package: "CustomControlFeatures"),
-      .product(name: "Shared", package: "ApiFeatures"),
-      .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
-    ]),
     
     // Ph1Controls
     .target( name: "Ph1Controls", dependencies: [
@@ -84,12 +73,6 @@ let package = Package(
       .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
     ]),
 
-    // TxRxAntennaPopover
-    .target(name: "TxRxAntennaPopover", dependencies: [
-      .product(name: "FlexApi", package: "ApiFeatures"),
-      .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
-    ]),
-    
     // ---------------- Tests ----------------
   ]
 )
