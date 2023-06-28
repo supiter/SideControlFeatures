@@ -142,7 +142,7 @@ public struct SideControlFeature: ReducerProtocol {
       case .rxButton:
         state.rxButton.toggle()
         if state.rxState == nil {
-          state.rxState = FlagFeature.State()
+          state.rxState = FlagFeature.State(isSliceFlag: false)
         } else {
           state.rxState = nil
         }

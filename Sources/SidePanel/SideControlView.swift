@@ -53,7 +53,7 @@ public struct SideControlView: View {
           if apiModel.clientInitialized {
             VStack {
               IfLetStore( self.store.scope(state: \.rxState, action: SideControlFeature.Action.rx),
-                          then: { store in FlagView(store: store) })
+                          then: { store in FlagView(store: store, smallFlag: .constant(false)) })
               
               IfLetStore( self.store.scope(state: \.txState, action: SideControlFeature.Action.tx),
                           then: { store in TxView(store: store) })
@@ -96,7 +96,7 @@ struct RightSideView_Previews: PreviewProvider {
         store: Store(
           initialState: FlagFeature.State(slice: Slice(1)),
           reducer: FlagFeature()
-        )
+        ), smallFlag: .constant(false)
       )
       .previewDisplayName("Rx")
       
