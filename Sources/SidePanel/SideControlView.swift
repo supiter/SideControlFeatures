@@ -102,7 +102,7 @@ struct RightSideView_Previews: PreviewProvider {
       
       SideControlView(
         store: Store(
-          initialState: SideControlFeature.State(txButton: true),
+          initialState: SideControlFeature.State(),
           reducer: SideControlFeature()
         ), apiModel: ApiModel(), objectModel: ObjectModel()
       )
@@ -110,7 +110,7 @@ struct RightSideView_Previews: PreviewProvider {
       
       SideControlView(
         store: Store(
-          initialState: SideControlFeature.State(eqButton: true, txEqSelected: false),
+          initialState: SideControlFeature.State(),
           reducer: SideControlFeature()
         ), apiModel: ApiModel(), objectModel: ObjectModel()
       )
@@ -118,7 +118,7 @@ struct RightSideView_Previews: PreviewProvider {
       
       SideControlView(
         store: Store(
-          initialState: SideControlFeature.State(ph1Button: true),
+          initialState: SideControlFeature.State(),
           reducer: SideControlFeature()
         ), apiModel: ApiModel(), objectModel: ObjectModel()
       )
@@ -126,7 +126,7 @@ struct RightSideView_Previews: PreviewProvider {
       
       SideControlView(
         store: Store(
-          initialState: SideControlFeature.State(ph2Button: true),
+          initialState: SideControlFeature.State(),
           reducer: SideControlFeature()
         ), apiModel: ApiModel(), objectModel: ObjectModel()
       )
@@ -134,7 +134,7 @@ struct RightSideView_Previews: PreviewProvider {
       
       SideControlView(
         store: Store(
-          initialState: SideControlFeature.State(cwButton: true),
+          initialState: SideControlFeature.State(),
           reducer: SideControlFeature()
         ), apiModel: ApiModel(), objectModel: ObjectModel()
       )
@@ -142,7 +142,7 @@ struct RightSideView_Previews: PreviewProvider {
       
       SideControlView(
         store: Store(
-          initialState: SideControlFeature.State(cwButton: true, eqButton: true, ph1Button: true, ph2Button: true, rxButton: true, txButton: true, txEqSelected: false),
+          initialState: SideControlFeature.State(),
           reducer: SideControlFeature()
         ), apiModel: ApiModel(), objectModel: ObjectModel()
       )

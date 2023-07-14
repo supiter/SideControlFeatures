@@ -15,23 +15,32 @@ import EqControls
 import Flag
 import Ph1Controls
 import Ph2Controls
+import Shared
 import TxControls
 
 public struct SideControlFeature: ReducerProtocol {
   
   public init() {}
   
+  @AppStorage("cwButton", store: DefaultValues.standardStore) var cwButton = false
+  @AppStorage("eqButton", store: DefaultValues.standardStore) var eqButton = false
+  @AppStorage("ph1Button", store: DefaultValues.standardStore) var ph1Button = false
+  @AppStorage("ph2Button", store: DefaultValues.standardStore) var ph2Button = false
+  @AppStorage("rxButton", store: DefaultValues.standardStore) var rxButton = false
+  @AppStorage("txButton", store: DefaultValues.standardStore) var txButton = false
+  @AppStorage("txEqSelected", store: DefaultValues.standardStore) var txEqSelected = false
+
   @Dependency(\.objectModel) var objectModel
   
   public struct State: Equatable {
-    var cwButton: Bool { didSet { UserDefaults.standard.set(cwButton, forKey: "cwButton") } }
-    var eqButton: Bool { didSet { UserDefaults.standard.set(eqButton, forKey: "eqButton") } }
+//    var cwButton: Bool { didSet { UserDefaults.standard.set(cwButton, forKey: "cwButton") } }
+//    var eqButton: Bool { didSet { UserDefaults.standard.set(eqButton, forKey: "eqButton") } }
     var height: CGFloat
-    var ph1Button: Bool { didSet { UserDefaults.standard.set(ph1Button, forKey: "ph1Button") } }
-    var ph2Button: Bool { didSet { UserDefaults.standard.set(ph2Button, forKey: "ph2Button") } }
-    var rxButton: Bool { didSet { UserDefaults.standard.set(rxButton, forKey: "rxButton") } }
-    var txButton: Bool { didSet { UserDefaults.standard.set(txButton, forKey: "txButton") } }
-    var txEqSelected: Bool { didSet { UserDefaults.standard.set(txEqSelected, forKey: "txEqSelected") } }
+//    var ph1Button: Bool { didSet { UserDefaults.standard.set(ph1Button, forKey: "ph1Button") } }
+//    var ph2Button: Bool { didSet { UserDefaults.standard.set(ph2Button, forKey: "ph2Button") } }
+//    var rxButton: Bool { didSet { UserDefaults.standard.set(rxButton, forKey: "rxButton") } }
+//    var txButton: Bool { didSet { UserDefaults.standard.set(txButton, forKey: "txButton") } }
+//    var txEqSelected: Bool { didSet { UserDefaults.standard.set(txEqSelected, forKey: "txEqSelected") } }
 
     var cwState: CwFeature.State?
     var eqState: EqFeature.State?
@@ -41,24 +50,24 @@ public struct SideControlFeature: ReducerProtocol {
     var txState: TxFeature.State?
     
     public init(
-      cwButton: Bool = UserDefaults.standard.bool(forKey: "cwButton"),
-      eqButton: Bool = UserDefaults.standard.bool(forKey: "eqButton"),
-      height: CGFloat = 400,
-      ph1Button: Bool = UserDefaults.standard.bool(forKey: "ph1Button"),
-      ph2Button: Bool = UserDefaults.standard.bool(forKey: "ph2Button"),
-      rxButton: Bool = UserDefaults.standard.bool(forKey: "rxButton"),
-      txButton: Bool = UserDefaults.standard.bool(forKey: "txButton"),
-      txEqSelected: Bool = UserDefaults.standard.bool(forKey: "txEqSelected")
+//      cwButton: Bool = UserDefaults.standard.bool(forKey: "cwButton"),
+//      eqButton: Bool = UserDefaults.standard.bool(forKey: "eqButton"),
+      height: CGFloat = 400
+//      ph1Button: Bool = UserDefaults.standard.bool(forKey: "ph1Button"),
+//      ph2Button: Bool = UserDefaults.standard.bool(forKey: "ph2Button"),
+//      rxButton: Bool = UserDefaults.standard.bool(forKey: "rxButton"),
+//      txButton: Bool = UserDefaults.standard.bool(forKey: "txButton"),
+//      txEqSelected: Bool = UserDefaults.standard.bool(forKey: "txEqSelected")
     )
     {
-      self.cwButton = cwButton
-      self.eqButton = eqButton
+//      self.cwButton = cwButton
+//      self.eqButton = eqButton
       self.height = height
-      self.ph1Button = ph1Button
-      self.ph2Button = ph2Button
-      self.rxButton = rxButton
-      self.txButton = txButton
-      self.txEqSelected = txEqSelected
+//      self.ph1Button = ph1Button
+//      self.ph2Button = ph2Button
+//      self.rxButton = rxButton
+//      self.txButton = txButton
+//      self.txEqSelected = txEqSelected
     }
   }
   
@@ -86,8 +95,8 @@ public struct SideControlFeature: ReducerProtocol {
       switch action {
         
       case .cwButton:
-        state.cwButton.toggle()
-        if state.cwButton {
+        cwButton.toggle()
+        if cwButton {
           state.cwState = CwFeature.State()
         } else {
           state.cwState = nil
@@ -95,9 +104,9 @@ public struct SideControlFeature: ReducerProtocol {
         return .none
         
       case .eqButton:
-        state.eqButton.toggle()
-        if state.eqButton {
-          state.eqState = EqFeature.State(id: state.txEqSelected ? Equalizer.Kind.tx.rawValue : Equalizer.Kind.rx.rawValue)
+        eqButton.toggle()
+        if eqButton {
+          state.eqState = EqFeature.State(id: txEqSelected ? Equalizer.Kind.tx.rawValue : Equalizer.Kind.rx.rawValue)
         } else {
           state.eqState = nil
         }
@@ -105,12 +114,12 @@ public struct SideControlFeature: ReducerProtocol {
         
       case .openClose(let open):
         if open {
-          if state.cwButton { state.cwState = CwFeature.State() }
-          if state.eqButton { state.eqState = EqFeature.State(id: state.txEqSelected ? Equalizer.Kind.tx.rawValue : Equalizer.Kind.rx.rawValue) }
-          if state.ph1Button { state.ph1State = Ph1Feature.State() }
-          if state.ph2Button { state.ph2State = Ph2Feature.State() }
+          if cwButton { state.cwState = CwFeature.State() }
+          if eqButton { state.eqState = EqFeature.State(id: txEqSelected ? Equalizer.Kind.tx.rawValue : Equalizer.Kind.rx.rawValue) }
+          if ph1Button { state.ph1State = Ph1Feature.State() }
+          if ph2Button { state.ph2State = Ph2Feature.State() }
           //        if state.rxButton { state.rxState = RxFeature.State() }
-          if state.txButton { state.txState = TxFeature.State() }
+          if txButton { state.txState = TxFeature.State() }
         } else {
           state.cwState = nil
           state.eqState = nil
@@ -122,8 +131,8 @@ public struct SideControlFeature: ReducerProtocol {
         return .none
 
       case .ph1Button:
-        state.ph1Button.toggle()
-        if state.ph1Button {
+        ph1Button.toggle()
+        if ph1Button {
           state.ph1State = Ph1Feature.State()
         } else {
           state.ph1State = nil
@@ -131,8 +140,8 @@ public struct SideControlFeature: ReducerProtocol {
         return .none
         
       case .ph2Button:
-        state.ph2Button.toggle()
-        if state.ph2Button {
+        ph2Button.toggle()
+        if ph2Button {
           state.ph2State = Ph2Feature.State()
         } else {
           state.ph2State = nil
@@ -140,8 +149,8 @@ public struct SideControlFeature: ReducerProtocol {
         return .none
         
       case .rxButton:
-        state.rxButton.toggle()
-        if state.rxState == nil {
+        rxButton.toggle()
+        if rxButton {
           state.rxState = FlagFeature.State(isSliceFlag: false)
         } else {
           state.rxState = nil
@@ -149,8 +158,8 @@ public struct SideControlFeature: ReducerProtocol {
         return .none
         
       case .txButton:
-        state.txButton.toggle()
-        if state.txButton {
+        txButton.toggle()
+        if txButton {
           state.txState = TxFeature.State()
         } else {
           state.txState = nil
@@ -179,13 +188,13 @@ public struct SideControlFeature: ReducerProtocol {
         // MARK: - Equalizer Actions
         
       case .eq(.rxButton):
-        state.txEqSelected = false
-        state.eqState = EqFeature.State(id: state.txEqSelected ? Equalizer.Kind.tx.rawValue : Equalizer.Kind.rx.rawValue)
+        txEqSelected = false
+        state.eqState = EqFeature.State(id: txEqSelected ? Equalizer.Kind.tx.rawValue : Equalizer.Kind.rx.rawValue)
         return .none
         
       case .eq(.txButton):
-        state.txEqSelected = true
-        state.eqState = EqFeature.State(id: state.txEqSelected ? Equalizer.Kind.tx.rawValue : Equalizer.Kind.rx.rawValue)
+        txEqSelected = true
+        state.eqState = EqFeature.State(id: txEqSelected ? Equalizer.Kind.tx.rawValue : Equalizer.Kind.rx.rawValue)
         return .none
         
       case .eq(_):
