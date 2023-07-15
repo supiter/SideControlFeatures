@@ -22,13 +22,13 @@ public struct SideControlFeature: ReducerProtocol {
   
   public init() {}
   
-  @AppStorage("cwButton", store: DefaultValues.standardStore) var cwButton = false
-  @AppStorage("eqButton", store: DefaultValues.standardStore) var eqButton = false
-  @AppStorage("ph1Button", store: DefaultValues.standardStore) var ph1Button = false
-  @AppStorage("ph2Button", store: DefaultValues.standardStore) var ph2Button = false
-  @AppStorage("rxButton", store: DefaultValues.standardStore) var rxButton = false
-  @AppStorage("txButton", store: DefaultValues.standardStore) var txButton = false
-  @AppStorage("txEqSelected", store: DefaultValues.standardStore) var txEqSelected = false
+  @AppStorage("cwButton", store: DefaultValues.flexStore) var cwButton = false
+  @AppStorage("eqButton", store: DefaultValues.flexStore) var eqButton = false
+  @AppStorage("ph1Button", store: DefaultValues.flexStore) var ph1Button = false
+  @AppStorage("ph2Button", store: DefaultValues.flexStore) var ph2Button = false
+  @AppStorage("rxButton", store: DefaultValues.flexStore) var rxButton = false
+  @AppStorage("txButton", store: DefaultValues.flexStore) var txButton = false
+  @AppStorage("txEqSelected", store: DefaultValues.flexStore) var txEqSelected = false
 
   @Dependency(\.objectModel) var objectModel
   
