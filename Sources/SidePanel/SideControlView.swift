@@ -32,7 +32,7 @@ public struct SideControlView: View {
   
   public var body: some View {
     
-    WithViewStore(self.store) { viewStore in
+    WithViewStore(self.store, observe: { $0 }) { viewStore in
       
       VStack(alignment: .center) {
         HStack {
