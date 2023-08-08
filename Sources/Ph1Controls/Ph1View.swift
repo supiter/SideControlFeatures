@@ -186,7 +186,7 @@ private struct AccView: View {
 
 struct Ph1View_Previews: PreviewProvider {
     static var previews: some View {
-      Ph1View(store: Store(initialState: Ph1Feature.State(), reducer: Ph1Feature()), objectModel: ObjectModel(), apiModel: ApiModel())
+      Ph1View(store: Store(initialState: Ph1Feature.State()) { Ph1Feature() }, objectModel: ObjectModel(), apiModel: ApiModel())
         .frame(width: 275, height: 250)
         .previewDisplayName("Ph1")
     }

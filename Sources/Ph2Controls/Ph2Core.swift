@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 import FlexApi
 
-public struct Ph2Feature: ReducerProtocol {
+public struct Ph2Feature: Reducer {
   public init(){}
 
   public struct State: Equatable {
@@ -22,7 +22,7 @@ public struct Ph2Feature: ReducerProtocol {
     case transmitProperty(Transmit, Transmit.Property, String)
   }
   
-  public func reduce(into state: inout State, action: Action) ->  EffectTask<Action> {
+  public func reduce(into state: inout State, action: Action) ->  Effect<Action> {
     switch action {
       
     case let .transmitProperty(transmit, property, value):

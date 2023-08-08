@@ -94,57 +94,50 @@ struct RightSideView_Previews: PreviewProvider {
     Group {
       FlagView(
         store: Store(
-          initialState: FlagFeature.State(slice: Slice(1)),
-          reducer: FlagFeature()
-        ), smallFlag: .constant(false)
+          initialState: FlagFeature.State(slice: Slice(1))) { FlagFeature() },
+        smallFlag: .constant(false)
       )
       .previewDisplayName("Rx")
       
       SideControlView(
         store: Store(
-          initialState: SideControlFeature.State(),
-          reducer: SideControlFeature()
-        ), apiModel: ApiModel(), objectModel: ObjectModel()
+          initialState: SideControlFeature.State()) { SideControlFeature() },
+        apiModel: ApiModel(), objectModel: ObjectModel()
       )
       .previewDisplayName("Tx")
       
       SideControlView(
         store: Store(
-          initialState: SideControlFeature.State(),
-          reducer: SideControlFeature()
-        ), apiModel: ApiModel(), objectModel: ObjectModel()
+          initialState: SideControlFeature.State()) { SideControlFeature() },
+        apiModel: ApiModel(), objectModel: ObjectModel()
       )
       .previewDisplayName("Eq")
       
       SideControlView(
         store: Store(
-          initialState: SideControlFeature.State(),
-          reducer: SideControlFeature()
-        ), apiModel: ApiModel(), objectModel: ObjectModel()
+          initialState: SideControlFeature.State()) { SideControlFeature() },
+        apiModel: ApiModel(), objectModel: ObjectModel()
       )
       .previewDisplayName("Ph1")
       
       SideControlView(
         store: Store(
-          initialState: SideControlFeature.State(),
-          reducer: SideControlFeature()
-        ), apiModel: ApiModel(), objectModel: ObjectModel()
+          initialState: SideControlFeature.State()) { SideControlFeature() },
+        apiModel: ApiModel(), objectModel: ObjectModel()
       )
       .previewDisplayName("Ph2")
       
       SideControlView(
         store: Store(
-          initialState: SideControlFeature.State(),
-          reducer: SideControlFeature()
-        ), apiModel: ApiModel(), objectModel: ObjectModel()
+          initialState: SideControlFeature.State()) { SideControlFeature() },
+        apiModel: ApiModel(), objectModel: ObjectModel()
       )
       .previewDisplayName("CW")
       
       SideControlView(
         store: Store(
-          initialState: SideControlFeature.State(),
-          reducer: SideControlFeature()
-        ), apiModel: ApiModel(), objectModel: ObjectModel()
+          initialState: SideControlFeature.State()) { SideControlFeature() },
+        apiModel: ApiModel(), objectModel: ObjectModel()
       )
       .frame(height: 1200)
       .previewDisplayName("ALL")

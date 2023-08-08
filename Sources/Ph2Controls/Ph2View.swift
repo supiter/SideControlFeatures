@@ -160,7 +160,7 @@ struct MicButtonsView: View {
 
 struct Ph2View_Previews: PreviewProvider {
   static var previews: some View {
-    Ph2View(store: Store(initialState: Ph2Feature.State(), reducer: Ph2Feature()))
+    Ph2View(store: Store(initialState: Ph2Feature.State()) { Ph2Feature() })
       .frame(width: 275)
   }
 }

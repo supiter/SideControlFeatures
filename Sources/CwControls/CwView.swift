@@ -127,7 +127,7 @@ struct BottomButtonsView: View {
 
 struct CwView_Previews: PreviewProvider {
   static var previews: some View {
-    CwView(store: Store(initialState: CwFeature.State(), reducer: CwFeature()))
+    CwView(store: Store(initialState: CwFeature.State()) { CwFeature() })
       .frame(width: 275, height: 210)
   }
 }

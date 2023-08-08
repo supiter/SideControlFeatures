@@ -18,7 +18,7 @@ import Ph2Controls
 import Shared
 import TxControls
 
-public struct SideControlFeature: ReducerProtocol {
+public struct SideControlFeature: Reducer {
   
   public init() {}
   
@@ -90,27 +90,9 @@ public struct SideControlFeature: ReducerProtocol {
     case txButton
   }
   
-  public var body: some ReducerProtocol<State, Action> {
+  public var body: some Reducer<State, Action> {
     Reduce { state, action in
       switch action {
-        
-      case .cwButton:
-        cwButton.toggle()
-        if cwButton {
-          state.cwState = CwFeature.State()
-        } else {
-          state.cwState = nil
-        }
-        return .none
-        
-      case .eqButton:
-        eqButton.toggle()
-        if eqButton {
-          state.eqState = EqFeature.State(id: txEqSelected ? Equalizer.Kind.tx.rawValue : Equalizer.Kind.rx.rawValue)
-        } else {
-          state.eqState = nil
-        }
-        return .none
         
       case .openClose(let open):
         if open {
@@ -130,6 +112,24 @@ public struct SideControlFeature: ReducerProtocol {
         }
         return .none
 
+      case .cwButton:
+        cwButton.toggle()
+        if cwButton {
+          state.cwState = CwFeature.State()
+        } else {
+          state.cwState = nil
+        }
+        return .none
+        
+      case .eqButton:
+        eqButton.toggle()
+        if eqButton {
+          state.eqState = EqFeature.State(id: txEqSelected ? Equalizer.Kind.tx.rawValue : Equalizer.Kind.rx.rawValue)
+        } else {
+          state.eqState = nil
+        }
+        return .none
+        
       case .ph1Button:
         ph1Button.toggle()
         if ph1Button {
@@ -172,21 +172,6 @@ public struct SideControlFeature: ReducerProtocol {
       case .cw(_):
         return .none
         
-      case .ph1(_):
-        return .none
-        
-      case .ph2(_):
-        return .none
-        
-      case .rx(_):
-        return .none
-        
-      case .tx(_):
-        return .none
-        
-        // ----------------------------------------------------------------------------
-        // MARK: - Equalizer Actions
-        
       case .eq(.rxButton):
         txEqSelected = false
         state.eqState = EqFeature.State(id: txEqSelected ? Equalizer.Kind.tx.rawValue : Equalizer.Kind.rx.rawValue)
@@ -200,6 +185,19 @@ public struct SideControlFeature: ReducerProtocol {
       case .eq(_):
         // all others ignored
         return .none
+
+      case .ph1(_):
+        return .none
+        
+      case .ph2(_):
+        return .none
+        
+      case .rx(_):
+        return .none
+        
+      case .tx(_):
+        return .none
+        
       }
     }
     

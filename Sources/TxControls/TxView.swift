@@ -143,7 +143,7 @@ private struct ButtonsView: View {
 
 struct TxView_Previews: PreviewProvider {
     static var previews: some View {
-      TxView(store: Store(initialState: TxFeature.State(), reducer: TxFeature()))
+      TxView(store: Store(initialState: TxFeature.State()) { TxFeature() })
         .frame(width: 275)
     }
 }

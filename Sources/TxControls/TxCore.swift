@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 import FlexApi
 
-public struct TxFeature: ReducerProtocol {
+public struct TxFeature: Reducer {
   public init() {}
   
   public struct State: Equatable {
@@ -23,7 +23,7 @@ public struct TxFeature: ReducerProtocol {
     case profileProperty(Profile, String, String)
   }
   
-  public func reduce(into state: inout State, action: Action) ->  EffectTask<Action> {    
+  public func reduce(into state: inout State, action: Action) ->  Effect<Action> {    
     switch action {
       
     case let .atuProperty(atu, property, value):

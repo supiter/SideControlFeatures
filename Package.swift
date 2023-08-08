@@ -24,7 +24,7 @@ let package = Package(
     .package(url: "https://github.com/K3TZR/CustomControlFeatures.git", branch: "main"),
     .package(url: "https://github.com/K3TZR/FlagFeatures.git", branch: "main"),
     // ----- OTHER -----
-    .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.57.0"),
+    .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.0.0"),
   ],
   
   targets: [
