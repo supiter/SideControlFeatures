@@ -28,18 +28,20 @@ public struct EqFeature: Reducer {
     case equalizerProperty(Equalizer, Equalizer.Property, String)
   }
   
-  public func reduce(into state: inout State, action: Action) ->  Effect<Action> {
-    switch action {
-
-    case let .flatButton(eq):
-      return .run { _ in await eq.flat() }
-      
-    case .rxButton(_), .txButton(_):
-      // action taken in parent feature
-      return .none
-
-    case let .equalizerProperty(eq, level, stringValue):
-      return .run { _ in await eq.setProperty(level, stringValue) }
+  public var body: some ReducerOf<Self> {
+    Reduce { state, action in
+      switch action {
+        
+      case let .flatButton(eq):
+        return .run { _ in await eq.flat() }
+        
+      case .rxButton(_), .txButton(_):
+        // action taken in parent feature
+        return .none
+        
+      case let .equalizerProperty(eq, level, stringValue):
+        return .run { _ in await eq.setProperty(level, stringValue) }
+      }
     }
   }
 }

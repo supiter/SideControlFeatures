@@ -23,17 +23,19 @@ public struct TxFeature: Reducer {
     case profileProperty(Profile, String, String)
   }
   
-  public func reduce(into state: inout State, action: Action) ->  Effect<Action> {    
-    switch action {
-      
-    case let .atuProperty(atu, property, value):
-      return .run { _ in await atu.setProperty(property, value) }
-
-    case let .transmitProperty(transmit, property, value):
-      return .run { _ in await transmit.setProperty(property, value) }
-
-    case let .profileProperty(profile, cmd, name):
-      return .run { _ in await profile.setProperty(cmd, name) }
+  public var body: some ReducerOf<Self> {
+    Reduce { state, action in
+      switch action {
+        
+      case let .atuProperty(atu, property, value):
+        return .run { _ in await atu.setProperty(property, value) }
+        
+      case let .transmitProperty(transmit, property, value):
+        return .run { _ in await transmit.setProperty(property, value) }
+        
+      case let .profileProperty(profile, cmd, name):
+        return .run { _ in await profile.setProperty(cmd, name) }
+      }
     }
   }
 }
